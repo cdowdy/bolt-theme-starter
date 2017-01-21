@@ -1,0 +1,25 @@
+{
+  "name": "vendorName/themeName",
+  "description": "Theme Description",
+  "type": "bolt-theme",
+  "keywords": ["theme", "key", "words"],
+  "require": {
+    "bolt/bolt": "^3.0"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Your  Name",
+      "email": "your@email.com"
+    }
+  ],
+  "extra": {
+    "bolt-icon": "your-icon.png",
+    "bolt-screenshots": [
+      "screenshots/teaser.png",
+      "screenshots/theme-desktop.png",
+      "screenshots/theme-mobile.png",
+      "screenshots/theme-unique-area.png"
+    ]
+  }
+}

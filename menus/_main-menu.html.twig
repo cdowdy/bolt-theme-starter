@@ -1,0 +1,24 @@
+{#
+ # Your Menu Markup. See: https://docs.bolt.cm/3.2/configuration/menus#
+ #
+ # Below Exists Example Markup Replace it with your own
+#}
+
+<nav class="" role="navigation">
+    <ul class="" id="">
+        {% for item in menu %}
+            <li class="">
+                <a href="{{ item.link }}">{{ item.label }}</a>
+                {% if item.submenu is defined %}
+                    <ul>
+                        {% for item in item.submenu %}
+                            <li class="{{ item.class }}">
+                                <a href="{{ item.link }}">{{item.label}}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

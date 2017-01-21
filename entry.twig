@@ -1,0 +1,22 @@
+{#
+ # using a base template allows us to have pretty clean templates. For instance here is our record.twig
+ # This typically is used for "generic" entries. Since we have set up our base.html.twig to have the head of
+ # the html document along with our global css, global js and basic structure we can have a pretty slimmed
+ # down record.twig. We will extend our base.html.twig then include the content used in the entry, usually
+ # {{ record.body }}
+#}
+
+{# pull in our base template #}
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+
+    {# for content from a contentype for our homepage set in config.yml #}
+    <div>
+        {{ record.body }}
+    </div>
+
+    {# you could also skip the record.body stuff and put your own markup here #}
+
+{% endblock body %}

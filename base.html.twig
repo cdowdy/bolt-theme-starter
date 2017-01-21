@@ -1,0 +1,76 @@
+{#
+ # This is the "skeleton base" of the entire layout of the theme. We will structure things here that will be use
+ # throuhout this theme to make for easy re-use.
+ # Remove This comment block once you get the gist of what is happening :)
+#}
+<!doctype html>
+<html lang="{{ htmllang() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {% if record.title is defined %}{{ record.title|striptags }} | {% endif %}
+        {{ app.config.get('general/sitename') }}
+        {% if record.title is not defined and app.config.get('general/payoff') %} | {{ app.config.get('general/payoff') }}{% endif %}
+    </title>
+    {# Creates a reusable block to be accessed from all twig templates . See index.twig for basic useage
+ # and http://twig.sensiolabs.org/doc/2.x/tags/extends.html for how blocks can and should work
+#}
+    {% block customMeta %}
+    {% endblock customMeta %}
+
+    {# this is for "touch" icons.
+     # example of these would be:
+     # <link rel="shortcut icon" href="/favicon.ico">
+     # <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+     # <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+     # or the associated meta tags like:
+     # <meta name="msapplication-TileColor" content="#2d89ef">
+    #}
+    {% block touchIcons %}
+        <link rel="shortcut icon" href="/favicon.ico">
+    {% endblock touchIcons %}
+
+
+    {# this is a global / sitewide css located in /css #}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/styles.css', 'theme') }}">
+    {% endblock stylesheets %}
+
+    {# this is for global / sitewide javascripts that need to be in the head located in /js #}
+    {% block headerJS %}
+    {% endblock headerJS %}
+</head>
+<body>
+{#
+ # typically your navigation would go here. If you are using a "top" bar style navigation you can put that here.
+ # For more complex navigations you may want to include a template that could be located in a directory.
+#}
+<header class="" id="" role="banner">
+    {{ menu('main', 'menu/_menu-main.html.twig') }}
+</header>
+<!-- /header -->
+
+<!-- main content area -->
+<main role="main">
+    {% block body %}
+    {% endblock body %}
+</main>
+<!-- /main -->
+
+{# why role="contentinfo" ? see https://www.w3.org/TR/wai-aria/roles#contentinfo
+ # your structure may require a different role though.
+#}
+<!-- footer -->
+<footer role="contentinfo">
+ {# your footer content here #}
+</footer>
+<!--  /footer -->
+
+{# our javascript to be incluced. Again global / sitewide js will be in the markup here #}
+{% block footerJS %}
+    <script src="{{ asset("js/main.js", "theme") }}" async defer ></script>
+{% endblock footerJS %}
+</body>
+</html>

@@ -1,0 +1,56 @@
+{#
+ # our main entry point to our "homepage" and anything else that uses index.twig
+ #
+ # we will extend our base template. This is the "base.html.twig". For any area we need we will use the
+ # {% block %}{% endblock %} syntax.
+ #
+ # This example will also over write some areas from the base and include certain files from the base. See
+ # Each block example for more in depth examples :)
+ #
+ # If you need a specific block you'll need to add this to the base. This may to be rigid for you. If that is the
+ # case you can follow Bolt's "Bolt-2016" theme and use includes instead of a base.html.twig with blocks and
+ # inheritence.
+#}
+
+{# pull in our base template #}
+{% extends "base.html.twig" %}
+
+
+{# page specific css can be included here.
+ # Make sure you include your global css too with the {{ parent() }} tag
+ # see: http://twig.sensiolabs.org/doc/2.x/functions/parent.html#parent
+#}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/home-page.css', 'theme') }}">
+{% endblock stylesheets %}
+
+
+
+
+{% block headerJS %}
+    {# here is how you add a js file to this page. It will not include any js in this block in base.html.twig #}
+    <script src="{{ asset("js/another-js-file.js", "theme") }}" async defer ></script>
+
+    {#
+     # to keep the files also set in base.html.twig we will use the {{ parent() }} tag
+     # see: http://twig.sensiolabs.org/doc/2.x/functions/parent.html#parent
+     # if the base.html.twig js files need to be above your js file included here... move it above it.
+    #}
+    {{ parent() }}
+{% endblock headerJS %}
+
+
+{# our main content located in the <main> tag from our base
+ # typically this is content retrieved from our database or static content for one offs you choose to use
+#}
+{% block body %}
+
+    {# for content from a contentype for our homepage set in config.yml #}
+    {{ record.body }}
+{% endblock body %}
+
+{% block footerJS %}
+    {{ parent() }}
+    <script src="{{ asset("js/another-js-file.js", "theme") }}" async defer ></script>
+{% endblock footerJS %}
