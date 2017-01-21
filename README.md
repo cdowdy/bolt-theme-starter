@@ -1,5 +1,5 @@
 # Bolt Theme Starter
-----
+
 
 This is a slightly opinionated boilerplate / starter for  Bolt CMS themes.  
 
